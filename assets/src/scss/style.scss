@@ -1,0 +1,13 @@
+@import "variables";
+
+html,
+body {
+	background: $background-color;
+	height: 100%;
+	margin: 0;
+	width: 100%;
+
+	#game {
+		text-align: center;
+	}
+}

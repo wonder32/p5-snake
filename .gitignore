@@ -1,0 +1,6 @@
+
+# Production files
+/assets/dist/
+
+# Node
+/node_modules/
