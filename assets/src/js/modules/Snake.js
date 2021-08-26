@@ -31,12 +31,18 @@ export default class Snake {
             if (d<1) {
                 this.total = 1;
                 this.tail = [];
+                return true;
+            } else {
+                return false;
             }
         }
         if (this.field.minHeight - this.field.edge < this.x || this.x < this.field.edge ||
             this.field.minHeight - this.field.edge < this.x || this.x < this.field.edge) {
-            this.total = 0;
+            this.total = 1;
             this.tail = [];
+            return true;
+        } else {
+            return false;
         }
     }
 

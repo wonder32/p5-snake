@@ -11,7 +11,6 @@ let snake;
 let food;
 let field;
 let score;
-let pause;
 
 new p5(function(p5) {
     p5.setup = function()
@@ -19,9 +18,7 @@ new p5(function(p5) {
         p5.frameRate(10);
         field = new Field(p5)
 
-
         let game = p5.createCanvas(field.minHeight, field.minHeight)
-
 
         game.parent("game");
         snake = new Snake(30, 10, field, p5)
@@ -46,14 +43,22 @@ new p5(function(p5) {
 
     p5.draw = function() {
         p5.background(51)
-        snake.death(p5)
+        if (snake.death(p5)) {
+            const prevLives = parseInt(score.livesValue.html());
+            score.livesValue.html(prevLives -1);
+            snake.x = field.edge + (p5.floor((30 / field.blockSize)) * field.blockSize);
+            snake.y = field.edge + (p5.floor((10 / field.blockSize)) * field.blockSize);
+            snake.xSpeed = 1;
+            snake.ySpeed = 0;
+        }
+
         snake.update(p5)
         snake.show(p5)
 
         if (snake.eat(snake, food)) {
             food = new Food(p5, field)
-            const prevScore = parseInt(score.board.html().substring(8));
-            score.board.html('Score = ' + (prevScore + 1));
+            const prevScore = parseInt(score.scoreValue.html());
+            score.scoreValue.html(prevScore + (10 * snake.total));
         }
 
         field.createRaster(p5)
@@ -72,7 +77,7 @@ new p5(function(p5) {
         } else if (p5.keyCode === 80) {
             if (pause) {
                 p5.loop();
-                pause = false;p
+                pause = false;
             } else {
                 p5.noLoop();
                 pause = true;

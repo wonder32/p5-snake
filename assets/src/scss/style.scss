@@ -1,13 +1,26 @@
 @import "variables";
 
+
+@font-face {
+	font-family: "Arcade Regular";
+	src: url("https://dev.snake.nl:3000/assets/font/arcade.regular.ttf") format("truetype");
+	//src: url("https://www.puddinq.mobi/snake/assets/font/arcade.regular.ttf") format("truetype");
+}
+
 html,
 body {
 	background: $background-color;
+	font-family: "Arcade Regular", sans-serif;
 	height: 100%;
 	margin: 0;
 	width: 100%;
 
 	#game {
 		text-align: center;
+	}
+
+	#score-label,
+	#score-value {
+		font-size: 1.9em;
 	}
 }
