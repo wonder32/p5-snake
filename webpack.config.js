@@ -12,10 +12,9 @@ const BUILD_DIR = path.resolve(__dirname, 'assets/dist');
 
 // Change edit these
 const BUILD_DIR_PUBLIC = '/dist';
-const WEBSITE_URL = 'dev.snake.nl';
-const SSL_WEBSITE_URL = 'https://dev.snake.nl';
-const SSL_KEY = 'C:\\wamp\\bin\\apache\\apache2.4.46\\conf\\key\\dev.snake.nl.key';
-const SSL_CERT = 'C:\\wamp\\bin\\apache\\apache2.4.46\\conf\\key\\dev.snake.nl.crt';
+const WEBSITE_URL = 'www.snake.test';
+const SSL_KEY = '/Users/stefanschotvanger/.config/valet/Certificates/snake.test.key';
+const SSL_CERT = '/Users/stefanschotvanger/.config/valet/Certificates/snake.test.crt';
 
 // process.on('warning', (warning) => {
 //     console.log(warning.stack);
@@ -87,10 +86,9 @@ module.exports = (env, options) => {
                 filename: 'css/[name].css',
             }),
             new BrowserSyncPlugin({
+                proxy: 'https://' + WEBSITE_URL,
                 host: WEBSITE_URL,
-                port: 3000,
                 files: '**/**.(json|php)',
-                proxy: SSL_WEBSITE_URL,
                 https: {
                     key: SSL_KEY,
                     cert: SSL_CERT,
